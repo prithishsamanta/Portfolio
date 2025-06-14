@@ -137,19 +137,20 @@ body {
     left: 0;
 }
 
-.connect-section {
+/* Connect section - General styles (non-footer) */
+.connect-section:not(footer .connect-section) {
     text-align: center;
     margin-top: 3rem;
 }
 
-.connect-buttons {
+.connect-buttons:not(footer .connect-buttons) {
     display: flex;
     gap: 1rem;
     justify-content: center;
     margin-top: 1rem;
 }
 
-.connect-button {
+.connect-button:not(footer .connect-button) {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -162,7 +163,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.connect-button:hover {
+.connect-button:not(footer .connect-button):hover {
     background-color: #007bff;
     color: white;
     transform: translateY(-2px);
@@ -173,11 +174,11 @@ body {
         padding: 0 20px;
     }
     
-    .connect-buttons {
+    .connect-buttons:not(footer .connect-buttons) {
         flex-direction: column;
     }
     
-    .connect-button {
+    .connect-button:not(footer .connect-button) {
         width: 100%;
         justify-content: center;
     }
@@ -323,32 +324,197 @@ body {
 /* Interests Grid */
 .interests-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 25px;
     text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .interest-item {
-    padding: 20px;
+    padding: 30px 25px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    height: 100%;
+}
+
+.interest-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.interest-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+    border-color: #007bff;
+}
+
+.interest-item:hover::before {
+    transform: scaleX(1);
 }
 
 .interest-item i {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
     color: #007bff;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.interest-item:hover i {
+    transform: scale(1.1);
+    color: #0056b3;
+}
+
+.interest-item h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.interest-item p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 /* Footer */
 footer {
-    background-color: #333;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: #fff;
-    padding: 40px 0;
+    padding: 60px 0 20px;
     text-align: center;
+    margin-top: 0;
+    position: relative;
 }
 
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #00c6ff, #007bff);
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer .connect-section {
+    margin-bottom: 40px;
+}
+
+footer .connect-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #ecf0f1;
+    font-weight: 300;
+}
+
+footer .connect-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+footer .connect-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+footer .connect-button:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+    border-color: #007bff;
+}
+
+footer .connect-button i {
+    font-size: 1.1rem;
+}
+
+footer > .container > p {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bdc3c7;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 0 20px;
+    }
+    
+    footer .connect-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    footer .connect-button {
+        width: 280px;
+        justify-content: center;
+        padding: 15px 20px;
+    }
+    
+    footer .connect-section p {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer .connect-button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Legacy social links styles (if still used) */
 .social-links {
     margin-bottom: 20px;
 }
@@ -436,7 +602,7 @@ footer {
 
 .page-title {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #333;
     font-size: 2.5rem;
 }
@@ -543,10 +709,44 @@ footer {
     color: white;
 }
 
+/* Interests Page Styles */
+.interests-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
 /* Interests Section */
 .interests-section {
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.interests-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.interests-section h2 i {
+    color: #007bff;
 }
 
 /* Photography Section Styles */
@@ -558,11 +758,12 @@ footer {
 } */
 
 .photography-section {
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 5px;
-    color: rgb(0, 123, 255);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 123, 255, 0.1);
 }
 
 .photography-intro {
@@ -660,16 +861,78 @@ footer {
     width: 20px;
 }
 
-/* Responsive adjustments for photography section */
+/* Responsive adjustments for interests page */
 @media (max-width: 768px) {
+    .interests-intro {
+        font-size: 1rem;
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+    
+    .interests-section {
+        margin-top: 30px;
+        padding: 30px 15px;
+        border-radius: 10px;
+    }
+    
+    .interests-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .interests-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 400px;
+    }
+    
+    .interest-item {
+        padding: 25px 20px;
+        min-height: 180px;
+    }
+    
+    .photography-section {
+        padding: 30px 15px;
+        border-radius: 10px;
+    }
+    
     .photo-gallery {
         grid-template-columns: 1fr;
         padding: 10px;
+        gap: 15px;
     }
     
     .photo-overlay {
         transform: translateY(0);
         background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    }
+    
+    .section-header {
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .section-header i {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-gallery {
+        grid-template-columns: 1fr;
+        padding: 5px;
+    }
+    
+    .interest-item h3 {
+        font-size: 1.2rem;
+    }
+    
+    .interest-item i {
+        font-size: 2.2rem;
     }
 }
 
