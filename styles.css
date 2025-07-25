@@ -357,9 +357,9 @@ body {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 25px;
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 35px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
