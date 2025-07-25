@@ -173,6 +173,25 @@ body {
     left: 0;
 }
 
+.know-more-link {
+    text-align: right;
+    margin: 5px 0 0 0;
+    font-size: 0.85rem;
+}
+
+.know-more-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.know-more-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
 /* Connect section - General styles (non-footer) */
 .connect-section:not(footer .connect-section) {
     text-align: center;
